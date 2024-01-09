@@ -1,0 +1,26 @@
+saldo = 2000
+
+
+class pankki:
+    while True:
+        lol = input("kirjoita komento jos et tiedä komentoja kirjoita info ")
+        if lol == "":
+            break
+        elif lol == "saldo":
+            print("saldossa on " , saldo)
+        elif lol == "lisää":
+            lisäys = int(input("paljon haluat lisätä "))
+            saldo = saldo + lisäys
+            print(saldo)
+        elif lol == "nosta":
+            poista = int(input("paljon haluat poistaa "))
+            if saldo >= poista:
+                saldo = saldo - poista
+                print(saldo)
+            else:
+                print("rahaa ei ole tarpeeksi näin isoon nostoon saldosi on ", saldo)
+        elif lol == "info":
+            print("saldo = kommento saldolla voi katsoa saldosi")
+            print("lisää = kommento voit lisätä lisää rahaa tilillesi")
+            print("nosta = kommento jolla voit nostaa rahaa käteiselle")
+        
