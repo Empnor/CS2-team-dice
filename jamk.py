@@ -1,21 +1,43 @@
-saldo = 2000
+import random
 
-class Jamk:
-    def __init__(self):
-        pass  # You can add any initialization code here if needed
+class jamk:
+    while True:
+        lol = input("laita komento mitä haluat tehdä")
+        
+        def hae_pelaaja(filename):
+            with open(filename, 'r') as file:
+                return [line.strip() for line in file.readlines()]
 
-    def main_loop(self):
-        while True:
-            lol = input("Kirjoita komento. Jos haluat lopettaa pelin, jätä tyhjäksi. Jos haluat tietää komennot, kirjoita 'komennot': ")
-            if lol == "":
-                break
-            elif lol == "pelaaja lista":
-                self.buy_players()
+# Read players from different files for each role
+        igllä = hae_pelaaja('igl.txt')
+        bossit = hae_pelaaja('awp.txt')
+        entryt = hae_pelaaja('entry.txt')
+        lurk_players = hae_pelaaja('lurk.txt')
+        rifle_players = hae_pelaaja('rifle.txt')
 
-    def buy_players(self):
-        # Add code here to read players from players.txt and implement buying logic
-        print("Ostetaan pelaajia!")
 
-# Instantiate the Jamk class and run the main loop
-game_instance = Jamk()
-game_instance.main_loop()
+        #onko pelaajia tarpeeksi joka roolissa
+        if len(igllä) >= 1 and len(bossit) >= 1 and len(entryt) >= 1 and len(lurk_players) >= 1 and len(rifle_players) >= 1:
+            # valitse rooliin pelaaja niin että se ei toista muita pelaajia
+            selected_igl = random.choice(igllä)
+            selected_awp = random.choice(list(set(bossit) - {selected_igl}))
+            selected_entry = random.choice(list(set(entryt) - {selected_igl, selected_awp}))
+            selected_lurk = random.choice(list(set(lurk_players) - {selected_igl, selected_awp, selected_entry}))
+            selected_rifle = random.choice(list(set(rifle_players) - {selected_igl, selected_awp, selected_entry, selected_lurk}))
+
+        # anna roolit pelaajille
+        roles = ['IGL', 'AWP', 'Entry', 'Lurk', 'Rifle']
+        players_with_roles = {
+            selected_igl: 'IGL',
+            selected_awp: 'AWP',
+            selected_entry: 'Entry',
+            selected_lurk: 'Lurk',
+            selected_rifle: 'Rifle'
+        }
+
+        for player, role in players_with_roles.items():
+            print(f"{player}: {role}")
+    else:
+        print("Not enough players in one or more role lists.")
+
+
