@@ -3,11 +3,11 @@ import random
 
 class jamk:
     while True:
-        lol = input("laita komento mitä haluat tehdä ")
-        if lol == "":
+        inputti = input("laita komento mitä haluat tehdä ")
+        if inputti == "":
             break
         
-        if lol == "arvo":
+        if inputti == "arvo":
             def hae_pelaaja(filename):
                 with open(filename, 'r') as file:
                     return [line.strip() for line in file.readlines()]
@@ -16,25 +16,24 @@ class jamk:
         entryt = hae_pelaaja('entry.txt')
         lurkit = hae_pelaaja('lurk.txt')
         riflet = hae_pelaaja('rifle.txt')
+        
         #onko pelaajia tarpeeksi joka roolissa
         if len(igllä) >= 1 and len(bossit) >= 1 and len(entryt) >= 1 and len(lurkit) >= 1 and len(riflet) >= 1:
             # valitse rooliin pelaaja niin että se ei toista muita pelaajia
-            selected_igl = random.choice(igllä)
-            selected_awp = random.choice(list(set(bossit) - {selected_igl}))
-            selected_entry = random.choice(list(set(entryt) - {selected_igl, selected_awp}))
-            selected_lurk = random.choice(list(set(lurkit) - {selected_igl, selected_awp, selected_entry}))
-            selected_rifle = random.choice(list(set(riflet) - {selected_igl, selected_awp, selected_entry, selected_lurk}))
+            valittu_igl = random.choice(igllä)
+            valittu_bossi = random.choice(list(set(bossit) - {valittu_igl}))
+            valittu_entry = random.choice(list(set(entryt) - {valittu_igl, valittu_bossi}))
+            valittu_lurkki = random.choice(list(set(lurkit) - {valittu_igl, valittu_bossi, valittu_entry}))
+            valittu_rifle = random.choice(list(set(riflet) - {valittu_igl, valittu_bossi, valittu_entry, valittu_lurkki}))
         # anna roolit pelaajille
+        
         roles = ['IGL', 'AWP', 'Entry', 'Lurk', 'Rifle']
         players_with_roles = {
-            selected_igl: 'IGL',
-            selected_awp: 'AWP',
-            selected_entry: 'Entry',
-            selected_lurk: 'Lurk',
-            selected_rifle: 'Rifle'
+            valittu_igl: 'IGL',
+            valittu_bossi: 'AWP',
+            valittu_entry: 'Entry',
+            valittu_lurkki: 'Lurk',
+            valittu_rifle: 'Rifle'
         }
         for player, role in players_with_roles.items():
             print(f"{player}: {role}")
-   
-
-
