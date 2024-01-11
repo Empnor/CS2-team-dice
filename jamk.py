@@ -3,7 +3,7 @@ import random
 
 class jamk:
     while True:
-        lol = input("laita komento mitä haluat tehdä")
+        lol = input("laita komento mitä haluat tehdä ")
         if lol == "":
             break
         
@@ -14,16 +14,16 @@ class jamk:
         igllä = hae_pelaaja('igl.txt')
         bossit = hae_pelaaja('awp.txt')
         entryt = hae_pelaaja('entry.txt')
-        lurk_players = hae_pelaaja('lurk.txt')
-        rifle_players = hae_pelaaja('rifle.txt')
+        lurkit = hae_pelaaja('lurk.txt')
+        riflet = hae_pelaaja('rifle.txt')
         #onko pelaajia tarpeeksi joka roolissa
-        if len(igllä) >= 1 and len(bossit) >= 1 and len(entryt) >= 1 and len(lurk_players) >= 1 and len(rifle_players) >= 1:
+        if len(igllä) >= 1 and len(bossit) >= 1 and len(entryt) >= 1 and len(lurkit) >= 1 and len(riflet) >= 1:
             # valitse rooliin pelaaja niin että se ei toista muita pelaajia
             selected_igl = random.choice(igllä)
             selected_awp = random.choice(list(set(bossit) - {selected_igl}))
             selected_entry = random.choice(list(set(entryt) - {selected_igl, selected_awp}))
-            selected_lurk = random.choice(list(set(lurk_players) - {selected_igl, selected_awp, selected_entry}))
-            selected_rifle = random.choice(list(set(rifle_players) - {selected_igl, selected_awp, selected_entry, selected_lurk}))
+            selected_lurk = random.choice(list(set(lurkit) - {selected_igl, selected_awp, selected_entry}))
+            selected_rifle = random.choice(list(set(riflet) - {selected_igl, selected_awp, selected_entry, selected_lurk}))
         # anna roolit pelaajille
         roles = ['IGL', 'AWP', 'Entry', 'Lurk', 'Rifle']
         players_with_roles = {
