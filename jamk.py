@@ -7,7 +7,7 @@ class jamk:
         if inputti == "":
             break
         
-        if inputti == "arvo":
+        if inputti == "arvo tiimi":
             def hae_pelaaja(filename):
                 with open(filename, 'r') as file:
                     return [line.strip() for line in file.readlines()]
