@@ -1,6 +1,5 @@
 import random
 
-
 class jamk:
     while True:
         #input
@@ -9,11 +8,12 @@ class jamk:
         if inputti == "":
             break
         #arvo tiimi inputti
-        if inputti == "arvo tiimi":
+        if inputti == "tiimi":
             #lukee tiedostot
             def hae_pelaaja(filename):
                 with open(filename, 'r') as file:
                     return [line.strip() for line in file.readlines()]
+        #hakee pelaajat 
         igllä = hae_pelaaja('igl.txt')
         bossit = hae_pelaaja('awp.txt')
         entryt = hae_pelaaja('entry.txt')
@@ -38,5 +38,6 @@ class jamk:
             valittu_lurkki: 'Lurk',
             valittu_rifle: 'Rifle'
         }
+        #rooli ja pelaaja kirjoitetaan yhteen
         for player, role in players_with_roles.items():
             print(f"{player}: {role}")
