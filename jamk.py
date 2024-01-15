@@ -3,11 +3,14 @@ import random
 
 class jamk:
     while True:
+        #input
         inputti = input("laita komento mitä haluat tehdä ")
+        #lopeta sovellus inputti
         if inputti == "":
             break
-        
+        #arvo tiimi inputti
         if inputti == "arvo tiimi":
+            #lukee tiedostot
             def hae_pelaaja(filename):
                 with open(filename, 'r') as file:
                     return [line.strip() for line in file.readlines()]
