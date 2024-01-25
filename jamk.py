@@ -5,14 +5,23 @@ import random
 class Jamk:
     def __init__(self):
         # windowin nimi ja layout
-        self.window = sg.Window('tiimien arvonta',
-                                layout=[[sg.Button('tiimin randomisointi', key='Buttonit')],
+       
+        self.window = sg.Window('tiimien arvonta', 
+                                layout=[[sg.Button('tiimin randomisointi', key='Buttonit'),
+                                         sg.Button('IGL', key='uusi_igl'),
+                                         sg.Button('AWP', key='uusi_awp'),
+                                         sg.Button('ENTRY', key='uusi_entry'),
+                                         sg.Button('LURK', key='uusi_lurk'),
+                                         sg.Button('RIFLE', key='uusi_rifle')],
                                         [sg.Text('', size=(30, 10), key='roolit')],
                                         [sg.Image(filename='', key='igl_image', size=(50, 50)),
                                          sg.Image(filename='', key='awp_image', size=(50, 50)),
                                          sg.Image(filename='', key='entry_image', size=(50, 50)),
                                          sg.Image(filename='', key='lurk_image', size=(50, 50)),
-                                         sg.Image(filename='', key='rifle_image', size=(50, 50))]],
+                                         sg.Image(filename='', key='rifle_image', size=(50, 50))],
+                                            [sg.Text("uusi kuva pelaajalle: "), sg.FileBrowse()]
+                                            ],
+                                
                                 margins=(50, 50))
         self.roolit = ['IGL', 'AWP', 'Entry', 'Lurk', 'Rifle']
         self.rooli_pelaajat = {}
@@ -43,12 +52,12 @@ class Jamk:
             self.rooli_pelaajat = {
                 'IGL': valittu_igl,
                 'AWP': valittu_bossi,
-                'Entry': valittu_entry,
-                'Lurk': valittu_lurkki,
-                'Rifle': valittu_rifle
+                'ENTRY': valittu_entry,
+                'LURK': valittu_lurkki,
+                'RIFLE': valittu_rifle
             }
 
-           #näytä pelaajien kuvat
+            # näytä pelaajien kuvat
             for role, player in self.rooli_pelaajat.items():
                 image_path = os.path.join('images', f'{player}.png')
                 self.window[f'{role.lower()}_image'].update(filename=image_path)
@@ -68,6 +77,18 @@ class Jamk:
 
             if event == 'Buttonit':
                 self.valitse_rooli()
+                self.näytä_rooli()
+
+            # koko tiimi uusiksi
+            elif event == 'uusi_tiimi':
+                self.valitse_rooli()
+                self.näytä_rooli()
+
+            #yksi rooli uusiksi
+            elif event in ['uusi_igl', 'uusi_awp', 'uusi_entry', 'uusi_lurk', 'uusi_rifle']:
+                role = event.split('_')[1].upper()
+                self.rooli_pelaajat[role] = random.choice(self.hae_pelaaja(f'{role.lower()}.txt'))
+                self.window[f'{role.lower()}_image'].update(filename=os.path.join('images', f'{self.rooli_pelaajat[role]}.png'))
                 self.näytä_rooli()
 
         self.window.close()
