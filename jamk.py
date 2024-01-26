@@ -4,8 +4,7 @@ import random
 
 class Jamk:
     def __init__(self):
-        #windowin nimi ja layout
-       
+        #windowin nimi ja layout       
         self.window = sg.Window('tiimien arvonta', 
                                 layout=[[sg.Button('tiimin randomisointi', key='Buttonit'),
                                          sg.Button('IGL', key='uusi_igl'),
@@ -71,7 +70,7 @@ class Jamk:
     def run(self):
         while True:
             event, values = self.window.read()
-            #ikkunan sulkeminen
+            #ikkunan sulkeminenäå
             if event == sg.WINDOW_CLOSED:
                 break
             #buttonit
