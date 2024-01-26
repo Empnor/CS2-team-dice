@@ -18,10 +18,9 @@ class Jamk:
                                          sg.Image(filename='', key='entry_image', size=(50, 50)),
                                          sg.Image(filename='', key='lurk_image', size=(50, 50)),
                                          sg.Image(filename='', key='rifle_image', size=(50, 50))],
-                                            [sg.Text("uusi kuva pelaajalle: "), sg.FileBrowse()]
-                                            ],
-                                
+                                            [sg.Text("uusi kuva pelaajalle: "), sg.FileBrowse()]],
                                 margins=(50, 50))
+        #roolit kerrotaan
         self.roolit = ['IGL', 'AWP', 'Entry', 'Lurk', 'Rifle']
         self.rooli_pelaajat = {}
 
