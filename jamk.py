@@ -4,7 +4,8 @@ import random
 
 class Jamk:
     def __init__(self):
-                # windowin nimi ja layout
+        # windowin nimi ja layout
+       
         self.window = sg.Window('tiimien arvonta', 
                                 layout=[[sg.Button('tiimin randomisointi', key='Buttonit'),
                                          sg.Button('IGL', key='uusi_igl'),
@@ -18,9 +19,10 @@ class Jamk:
                                          sg.Image(filename='', key='entry_image', size=(50, 50)),
                                          sg.Image(filename='', key='lurk_image', size=(50, 50)),
                                          sg.Image(filename='', key='rifle_image', size=(50, 50))],
-                                            [sg.Text("uusi kuva pelaajalle: "), sg.FileBrowse()]],
+                                            [sg.Text("uusi kuva pelaajalle: "), sg.FileBrowse()]
+                                            ],
+                                
                                 margins=(50, 50))
-        #roolit kerrotaan
         self.roolit = ['IGL', 'AWP', 'Entry', 'Lurk', 'Rifle']
         self.rooli_pelaajat = {}
 
