@@ -4,7 +4,7 @@ import random
 
 class Jamk:
     def __init__(self):
-        # windowin nimi ja layout
+        #windowin nimi ja layout
        
         self.window = sg.Window('tiimien arvonta', 
                                 layout=[[sg.Button('tiimin randomisointi', key='Buttonit'),
@@ -46,9 +46,9 @@ class Jamk:
             valittu_entry = random.choice(list(set(entryt) - {valittu_igl, valittu_bossi}))
             valittu_lurkki = random.choice(list(set(lurkit) - {valittu_igl, valittu_bossi, valittu_entry}))
             valittu_rifle = random.choice(
-                list(set(riflet) - {valittu_igl, valittu_bossi, valittu_entry, valittu_lurkki}))
+            list(set(riflet) - {valittu_igl, valittu_bossi, valittu_entry, valittu_lurkki}))
 
-            # roolit
+            # roolit pelaajiin
             self.rooli_pelaajat = {
                 'IGL': valittu_igl,
                 'AWP': valittu_bossi,
@@ -57,7 +57,7 @@ class Jamk:
                 'RIFLE': valittu_rifle
             }
 
-            # näytä pelaajien kuvat
+            #näytä pelaajien kuvat
             for role, player in self.rooli_pelaajat.items():
                 image_path = os.path.join('images', f'{player}.png')
                 self.window[f'{role.lower()}_image'].update(filename=image_path)
@@ -71,10 +71,10 @@ class Jamk:
     def run(self):
         while True:
             event, values = self.window.read()
-
+            #ikkunan sulkeminen
             if event == sg.WINDOW_CLOSED:
                 break
-
+            #buttonit
             if event == 'Buttonit':
                 self.valitse_rooli()
                 self.näytä_rooli()
